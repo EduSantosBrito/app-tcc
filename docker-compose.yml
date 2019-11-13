@@ -1,0 +1,37 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./wordpress:/var/www/html/wordpress
+    ports:
+      - 80:80
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    depends_on: 
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_WP_HOME: http://wordpress:80/wordpress
+      WORDPRESS_WP_SITEURL: http://wordpress:80/wordpress
+    volumes:
+      - ./wordpress:/var/www/html/wordpress
+      - ./.htaccess:/var/www/html/wordpress/.htaccess
+      - ./apache2.conf:/etc/apache2/apache2.conf
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+    volumes:
+      - ./db:/var/lib/mysql

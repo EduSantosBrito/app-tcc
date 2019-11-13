@@ -1,6 +1,6 @@
 [submodule "wordpress"]
 	path = wordpress
-	url = git://github.com/EduSantosBrito/wordpress-tcc.git
+	url = https://github.com/EduSantosBrito/wordpress-tcc.git
 [submodule "esio"]
 	path = esio
-	url = git://github.com/EduSantosBrito/esio-tcc.git
+	url = https://github.com/EduSantosBrito/esio-tcc.git

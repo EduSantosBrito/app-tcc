@@ -53,10 +53,12 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
-    ulimits: 
+    ulimits:
+      # Single number or mapping with soft + hard limits
+      nproc: 65535
       nofile:
-        soft: 98304
-        hard: 98304
+        soft: 20000
+        hard: 40000
   mongo:
     image: mongo
     restart: always

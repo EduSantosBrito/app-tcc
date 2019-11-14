@@ -55,8 +55,8 @@ services:
       - mongo
     ulimits: 
       nofile:
-        soft: 20000
-        hard: 40000
+        soft: 98304
+        hard: 98304
   mongo:
     image: mongo
     restart: always

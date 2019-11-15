@@ -7,6 +7,9 @@ services:
       - ./wordpress:/var/www/html/wordpress
     ports:
       - 80:80
+    depends_on: 
+      - wordpress
+      - esio
   wordpress:
     image: wordpress
     restart: always
